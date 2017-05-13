@@ -1,0 +1,165 @@
+<weapons>
+    <weapon name="frei">
+        <action name="Ausweichen"
+            ticks="6"
+            defense="true"
+            bonus="0"
+            attributes="Geschick, Sinne"/>
+    </weapon>
+
+    <weapon name="Kurzschwert">
+        <action name="Angriff"
+                ticks="3"
+                bonus="5"
+                attributes="Geschick, Kraft"
+                damage ="4w6"/>
+        <action name="Verteidigung"
+            ticks="2"
+            defense="true"
+            bonus="4"
+            attributes="Geschick, Geschwindigkeit"/>
+    </weapon>
+
+    <weapon name="Langschwert">
+        <action name="Angriff"
+            ticks="6"
+            bonus="8"
+            attributes="Geschick, Kraft"
+            damage ="6w6"/>
+        <action name="Verteidigung"
+            ticks="2"
+            defense="true"
+            bonus="7"
+            attributes="Geschick, Geschwindigkeit"/>
+    </weapon>
+
+    <weapon name="Bihänder"
+             twohands="true">
+        <action name="Angriff"
+            ticks="8"
+            bonus="11"
+            attributes="Geschick, Kraft"
+            damage ="7w8"/>
+        <action name="Verteidigung"
+            ticks="3"
+            defense="true"
+            bonus="10"
+            attributes="Geschick, Geschwindigkeit"/>
+    </weapon>
+    <weapon name="Dolch">
+        <action name="Angriff"
+            ticks="2"
+            bonus="2"
+            attributes="Geschick, Geschwindigkeit"
+            damage ="4w12"/>
+        <action name="Verteidigung"
+            ticks="1"
+            defense="true"
+            bonus="1"
+            attributes="Geschick, Geschwindigkeit"/>
+    </weapon>
+
+    <weapon name="Axt"
+        twohands="true">
+        <action name="Angriff"
+            difficult="true"
+            ticks="9"
+            bonus="11"
+            damage ="8w12"
+            attributes="Kraft, Geschwindigkeit"/>
+        <action name="Verteidigung"
+            ticks="4"
+            defense="true"
+            bonus="4"
+            attributes="Kraft, Geschick"/>
+    </weapon>
+
+    <weapon name="Hammer"
+        twohands="true">
+        <action name="Angriff"
+            ticks="10"
+            difficult="true"
+            bonus="8"
+            damage ="10w12"
+            charge="true"
+            attributes="Kraft, Geschwindigkeit"/>
+        <action name="Verteidigung"
+            ticks="6"
+            defense="true"
+            bonus="1"
+            attributes="Kraft, Geschick"/>
+    </weapon>
+
+    <weapon name="Hallbarde"
+        twohands="true">
+        <action name="Angriff"
+            ticks="8"
+            bonus="15"
+            damage ="5w8"
+            attributes="Geschick, Geschwindigkeit"/>
+        <action name="Verteidigung"
+            ticks="4"
+            defense="true"
+            bonus="7"
+            attributes="Geschick, Kraft"/>
+    </weapon>
+
+    <weapon name="Armbrust"
+        twohands="true">
+        <action name="Angriff"
+            ticks="2"
+            shot="true"
+            difficult="true"
+            bonus="11"
+            damage ="10w8"
+            attributes="Geschick, Sinne"/>
+        <action name="nachladen"
+            ticks="9"
+            difficulty="(4,4)"
+            attributes="Geschick, Kraft" />
+    </weapon>
+
+    <weapon name="Gewehr"
+        twohands="true">
+        <action name="Angriff"
+            ticks="2"
+            shot="true"
+            difficult="true"
+            bonus="8"
+            damage ="10w10"
+            attributes="Geschick, Sinne"/>
+        <action name="nachladen"
+            ticks="9"
+            difficulty="(6-,6 geladen,6 + 5)"
+            attributes="Geschick, Kraft" />
+    </weapon>
+
+    <weapon name="Bogen"
+        twohands="true">
+        <action name="Angriff"
+            ticks="2"
+            difficult="true"
+            shot="true"
+            bonus="8"
+            damage ="7w6"
+            attributes="Geschick, Sinne"/>
+        <action name="Nachladen"
+            ticks="4"
+            difficulty="(6)"
+            attributes="Geschick"/>
+    </weapon>
+
+    <weapon name="Schild">
+        <action name="Angriff"
+            ticks="5"
+            bonus="2"
+            damage ="3w4"
+            charge="true"
+            attributes="Kraft"/>
+        <action name="Verteidigung"
+            ticks="1"
+            defense="true"
+            bonus="13"
+            attributes="Geschick, Kraft"/>
+    </weapon>
+</weapons>

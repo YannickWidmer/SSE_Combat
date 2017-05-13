@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="ch.widmer.yannick.ssecombat.MainActivity">
+
+    <item
+        android:id="@+id/action_next"
+        android:orderInCategory="1"
+        android:title="next"
+        app:materialIcon="cached"
+        app:materialIconColor="#003bfe"
+        app:showAsAction="always"
+        />
+
+</menu>

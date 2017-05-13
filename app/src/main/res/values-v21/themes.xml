@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+      <!--
+        Base theme.
+    -->
+    <style name="SSEBaseThemeNoOrientation" parent="android:Theme.Holo.Light">
+        <item name="android:windowActionBar">true</item>
+        <item name="android:textColorAlertDialogListItem">@android:color/white</item>
+        <item name="android:dialogTheme">@style/SSEBaseDialog</item>
+    </style>
+    
+    <style name="SSEBaseTheme" parent="SSEBaseThemeNoOrientation">
+    	<item name="android:windowBackground">@drawable/background</item>
+	</style>
+
+    <style name="SSEBaseDialog" parent="android:Theme.Holo.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:textColorAlertDialogListItem">@android:color/white</item>
+    </style>
+
+
+
+</resources>
