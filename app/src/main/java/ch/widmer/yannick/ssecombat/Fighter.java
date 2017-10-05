@@ -10,9 +10,9 @@ public class Fighter {
     private static int ID=0;
     private final int id = ++ID;
     String mName;
-    int mMaxLife, mLife, mMaxStamina,mStamina,mTick;
+    int mMaxLife, mLife, mMaxStamina,mStamina,mTick,mAcuity;
 
-    public Fighter(boolean isFoe, String name, int maxLife, int life, int maxStamina, int stamina, int tick) {
+    public Fighter(boolean isFoe, String name, int maxLife, int life, int maxStamina, int stamina, int tick, int acuity) {
         mIsFoe = isFoe;
         mName = name;
         mMaxLife = maxLife;
@@ -20,6 +20,7 @@ public class Fighter {
         mMaxStamina = maxStamina;
         mStamina = stamina;
         mTick = tick;
+        mAcuity = acuity;
     }
 
     public int getId(){return id;}
@@ -54,13 +55,18 @@ public class Fighter {
         return mTick;
     }
 
-    public void set(String name, int maxLife, int life, int maxStamina, int stamina, int tick) {
+    public void set(String name, int maxLife, int life, int maxStamina, int stamina, int tick, int acutiy) {
         mName = name;
         mMaxLife = maxLife;
         mLife = life;
         mMaxStamina = maxStamina;
         mStamina = stamina;
         mTick = tick;
+        mAcuity = acutiy;
+    }
+
+    public int getActuity(){
+        return mAcuity;
     }
 
     public int getStaminaMax() {

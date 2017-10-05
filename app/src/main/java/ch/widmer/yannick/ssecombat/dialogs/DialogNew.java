@@ -39,7 +39,12 @@ public class DialogNew extends Activity {
                 parseInt((EditText)findViewById(R.id.life_max)));
         returnIntent.putExtra("life",
                 parseInt((EditText)findViewById(R.id.life)));
+        returnIntent.putExtra("acuity",
+                parseInt((EditText)findViewById(R.id.acuity)));
+
         returnIntent.putExtra("foe",((CheckBox)findViewById(R.id.foe)).isChecked());
+
+
         setResult(RESULT_OK, returnIntent);
         super.finish();
     }

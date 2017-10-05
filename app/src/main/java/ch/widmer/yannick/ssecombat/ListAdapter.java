@@ -42,7 +42,7 @@ public class ListAdapter extends ArrayAdapter<Fighter> {
             ((JaugeView)view.findViewById(R.id.vie)).setValues(fighter.getMaxLife(),fighter.getLife());
             ((JaugeView)view.findViewById(R.id.stamina)).setValues(fighter.getStaminaMax(),fighter.getStamina());
             ((TextView)view.findViewById(R.id.tick)).setText(""+fighter.getTick());
-
+            view.set
             if(fighter.isFoe()) {
                 view.setBackgroundResource(R.color.grey);
             }else{

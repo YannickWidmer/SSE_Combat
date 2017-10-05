@@ -198,7 +198,8 @@ public class MainActivity extends AppCompatActivity {
                                     data.getIntExtra("life",0),
                                     data.getIntExtra("stamina max",0),
                                     data.getIntExtra("stamina",0),
-                                    data.getIntExtra("tick",0)
+                                    data.getIntExtra("tick",0),
+                                    data.getIntExtra("acuity",0)
                             );
                         }
                     }
@@ -210,7 +211,8 @@ public class MainActivity extends AppCompatActivity {
                             data.getIntExtra("life",0),
                             data.getIntExtra("stamina max",0),
                             data.getIntExtra("stamina",0),
-                            data.getIntExtra("tick",0)
+                            data.getIntExtra("tick",0),
+                            data.getIntExtra("acuity",0)
                             );
                     break;
                 case ACT:
@@ -241,14 +243,18 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_next:
                 mManager.next();
                 break;
+            case R.id.action_acuity:
+                AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
+                builderSingle.setTitle("acuity test:");
+                builderSingle.setSingleChoiceItems(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,mManager.acuity_test()),0,null);
+                builderSingle.show();
+                break;
         }
         mAdapter.notifyDataSetChanged();
 
         //noinspection SimplifiableIfStatement
         return super.onOptionsItemSelected(item);
     }
-
-
 
 
     private class AsyncInit extends AsyncTask<Void,Void,Void> {

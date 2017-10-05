@@ -23,6 +23,7 @@ public class DialogModif extends Activity {
         ((EditText)findViewById(R.id.stamina)).setText(""+getIntent().getIntExtra("stamina",0));
         ((EditText)findViewById(R.id.life_max)).setText(""+getIntent().getIntExtra("life max",0));
         ((EditText)findViewById(R.id.life)).setText(""+getIntent().getIntExtra("life",0));
+        ((EditText)findViewById(R.id.acuity)).setText(""+getIntent().getIntExtra("acuity",0));
     }
 
     public void cancel(View v){
@@ -58,6 +59,8 @@ public class DialogModif extends Activity {
                 parseInt((EditText)findViewById(R.id.life_max)));
         returnIntent.putExtra("life",
                 parseInt((EditText)findViewById(R.id.life)));
+        returnIntent.putExtra("acuity",
+                parseInt((EditText)findViewById(R.id.acuity)));
         setResult(RESULT_OK, returnIntent);
         super.finish();
     }

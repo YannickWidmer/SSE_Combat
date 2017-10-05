@@ -8,8 +8,16 @@
         android:orderInCategory="1"
         android:title="next"
         app:materialIcon="cached"
-        app:materialIconColor="#003bfe"
+        app:materialIconColor="#358b1e"
         app:showAsAction="always"
         />
 
+    <item
+        android:id="@+id/action_acuity"
+        android:orderInCategory="2"
+        android:title="acuity"
+        app:materialIcon="eye"
+        app:materialIconColor="#358b1e"
+        app:showAsAction="always"
+        />
 </menu>

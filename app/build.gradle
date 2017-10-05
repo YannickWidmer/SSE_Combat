@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "23.0.2"
+    buildToolsVersion '26.0.1'
     defaultConfig {
         applicationId "ch.widmer.yannick.ssecombat"
         minSdkVersion 15
@@ -26,7 +26,6 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.android.support:design:25.2.0'
-    compile 'net.steamcrafted:materialiconlib:1.1.3'
-
+    compile 'net.steamcrafted:materialiconlib:1.1.4'
     testCompile 'junit:junit:4.12'
 }

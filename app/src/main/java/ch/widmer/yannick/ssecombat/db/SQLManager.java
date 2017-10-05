@@ -35,7 +35,7 @@ public class SQLManager extends SQLiteOpenHelper {
     //Table columns names
     public static final  String KEY_ID = "ID", KEY_NAME = "NAME",
         KEY_ISFOE = "ISFOE", KEY_MAXLIFE = "MAXLIFE", KEY_LIFE = "LIFE",
-        KEY_MAXSTAMINA="MAXSTAMINA", KEY_STAMINA = "STAMINA",
+        KEY_MAXSTAMINA="MAXSTAMINA", KEY_STAMINA = "STAMINA", KEY_ACUITY = "ACTUITY",
         KEY_TICK = "TICK";
 
 
@@ -62,7 +62,7 @@ public class SQLManager extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_ARMY_TABLE = "CREATE TABLE " + TABLE_FIGHTER + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-                + KEY_ISFOE + " BOOLEAN, "
+                + KEY_ISFOE + " BOOLEAN, " + KEY_ACUITY + " INTEGER, "
                 + KEY_MAXLIFE + " INTEGER, " +  KEY_LIFE + " INTEGER, "
                 + KEY_MAXSTAMINA + " INTEGER, " + KEY_STAMINA + " INTEGER,"
                 + KEY_TICK + " INTEGER"
@@ -98,6 +98,7 @@ public class SQLManager extends SQLiteOpenHelper {
         c.put(KEY_ISFOE,fighter.isFoe()?"true":"false");
         c.put(KEY_MAXLIFE, fighter.getMaxLife());
         c.put(KEY_LIFE, fighter.getLife());
+        c.put(KEY_ACUITY,fighter.getActuity());
         c.put(KEY_MAXSTAMINA, fighter.getStaminaMax());
         c.put(KEY_STAMINA, fighter.getStamina());
         c.put(KEY_TICK, fighter.getTick());
@@ -113,12 +114,12 @@ public class SQLManager extends SQLiteOpenHelper {
         ArrayList<Fighter> fighters = new ArrayList<>();
         Fighter fighter;
         db = getReadableDatabase();
-        Cursor c = db.query(TABLE_FIGHTER,new String[]{KEY_NAME,KEY_ID,KEY_ISFOE,KEY_LIFE,KEY_MAXLIFE,KEY_MAXSTAMINA,KEY_STAMINA,KEY_TICK},null,null,null,null,null);
+        Cursor c = db.query(TABLE_FIGHTER,new String[]{KEY_NAME,KEY_ID,KEY_ACUITY,KEY_ISFOE,KEY_LIFE,KEY_MAXLIFE,KEY_MAXSTAMINA,KEY_STAMINA,KEY_TICK},null,null,null,null,null);
         if(c.moveToFirst()){
             do{
                 fighters.add(new Fighter(getBoolean(c,KEY_ISFOE),
                         getString(c,KEY_NAME), getInt(c,KEY_MAXLIFE), getInt(c,KEY_LIFE),
-                        getInt(c,KEY_MAXSTAMINA), getInt(c,KEY_STAMINA), getInt(c,KEY_TICK)));
+                        getInt(c,KEY_MAXSTAMINA), getInt(c,KEY_STAMINA), getInt(c,KEY_TICK),getInt(c,KEY_ACUITY)));
             }while(c.moveToNext());
         }
         db.close();

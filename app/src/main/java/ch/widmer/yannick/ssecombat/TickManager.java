@@ -5,6 +5,7 @@ import android.app.Activity;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Random;
 
 import ch.widmer.yannick.ssecombat.db.SQLManager;
 
@@ -14,6 +15,7 @@ import ch.widmer.yannick.ssecombat.db.SQLManager;
 
 public class TickManager {
     private ArrayList<Fighter> mList;
+    private static Random random = new Random();
     private SQLManager sqlManager;
     private Comparator<Fighter> comparator = new Comparator<Fighter>() {
         @Override
@@ -28,8 +30,8 @@ public class TickManager {
         mList.addAll(sqlManager.getFighters());
     }
 
-    public void add(boolean isFoe,String name, int maxLife, int life, int maxStamina, int stamina, int tick){
-        mList.add(new Fighter(isFoe,name,maxLife,life,maxStamina,stamina,tick));
+    public void add(boolean isFoe,String name, int maxLife, int life, int maxStamina, int stamina, int tick, int acuity){
+        mList.add(new Fighter(isFoe,name,maxLife,life,maxStamina,stamina,tick,acuity));
         orderListByTick();
     }
 
@@ -72,5 +74,14 @@ public class TickManager {
 
     private void save(){
         sqlManager.save(mList);
+    }
+
+    public ArrayList<String> acuity_test() {
+        ArrayList<String> res = new ArrayList<>();
+        for(Fighter f:mList)
+            res.add((random.nextInt(f.getActuity())+1) +" "+f.getName());
+        Collections.sort(res);
+        Collections.reverse(res);
+        return res;
     }
 }

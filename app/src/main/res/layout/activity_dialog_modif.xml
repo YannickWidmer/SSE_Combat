@@ -97,6 +97,20 @@
         style="@style/BaseTextDialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="actuity"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/acuity" />
+
+    <TextView
+        android:padding="@dimen/fab_margin"
+        style="@style/BaseTextDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="tick"/>
 
     <EditText
