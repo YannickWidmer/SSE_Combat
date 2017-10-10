@@ -69,6 +69,11 @@ public class Fighter {
         return mAcuity;
     }
 
+    @Override
+    public String toString(){
+        return mName;
+    }
+
     public int getStaminaMax() {
         return mMaxStamina;
     }

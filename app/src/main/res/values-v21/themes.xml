@@ -10,7 +10,7 @@
     </style>
     
     <style name="SSEBaseTheme" parent="SSEBaseThemeNoOrientation">
-    	<item name="android:windowBackground">@drawable/background</item>
+    	<item name="android:windowBackground">@mipmap/background</item>
 	</style>
 
     <style name="SSEBaseDialog" parent="android:Theme.Holo.Dialog">

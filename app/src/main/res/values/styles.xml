@@ -10,7 +10,7 @@
 
     <style name="BaseText" parent="android:style/Widget.TextView">
         <item name="android:textSize">20dp</item>
-        <item name="android:textColor">#e11d2543</item>
+        <item name="android:textColor">#e197e7bf</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:gravity">center</item>
     </style>
@@ -22,7 +22,7 @@
 
     <style name="BaseTextNumber" parent="android:style/Widget.TextView">
         <item name="android:textSize">30dp</item>
-        <item name="android:textColor">#e11d2543</item>
+        <item name="android:textColor">#fcfffd</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:gravity">center</item>
     </style>

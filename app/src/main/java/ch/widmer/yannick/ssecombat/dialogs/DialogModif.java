@@ -42,7 +42,15 @@ public class DialogModif extends Activity {
         super.finish();
     }
 
-    public void confirmed(View v){
+    public void idle(View v){
+        answer(true);
+    }
+
+    public void confirmed(View v) {
+        answer(false);
+    }
+
+    private void answer(boolean idle){
         Intent returnIntent;
         returnIntent = new Intent();
         returnIntent.putExtra("id",getIntent().getIntExtra("id",0));
@@ -61,6 +69,7 @@ public class DialogModif extends Activity {
                 parseInt((EditText)findViewById(R.id.life)));
         returnIntent.putExtra("acuity",
                 parseInt((EditText)findViewById(R.id.acuity)));
+        returnIntent.putExtra("idle",idle);
         setResult(RESULT_OK, returnIntent);
         super.finish();
     }

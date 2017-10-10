@@ -39,10 +39,12 @@ public class MainActivity extends AppCompatActivity {
     private static final String LOG = "MainActivity";
     private TickManager mManager;
     private ListAdapter mAdapter;
-    private ArrayAdapter<Weapon> weaponArrayAdapter;
-    private ArrayAdapter<Action> actionAdapter;
-    private ArrayAdapter<Fighter> fighterAdapter;
+    private ArrayAdapter<Fighter> mIdleAdapter;
     private Weapon chosenWeapon;
+
+    private ArrayAdapter<Weapon>  weaponArrayAdapter = new ArrayAdapter<>(MainActivity.this,R.layout.support_simple_spinner_dropdown_item);
+    private ArrayAdapter<Action>  actionAdapter = new ArrayAdapter<>(MainActivity.this,R.layout.support_simple_spinner_dropdown_item);
+
 
 
     private final static int NEW =0 , MODIF = 1, ACT = 2;
@@ -61,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, NEW);
             }
         });
-
-
 
 
         //Do Asyncronously what can be done asyncronously
@@ -89,12 +89,26 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("id",f.getId());
                 intent.putExtra("name",f.getName());
                 intent.putExtra("tick",f.getTick());
+                intent.putExtra("acuity",f.getActuity());
                 intent.putExtra("stamina max",f.getStaminaMax());
                 intent.putExtra("stamina",f.getStamina());
                 intent.putExtra("life max",f.getMaxLife());
                 intent.putExtra("life",f.getLife());
                 startActivityForResult(intent, MODIF);
                 return true;
+            }
+        });
+
+        // Drawer stuff
+        mIdleAdapter = new ArrayAdapter<Fighter>(this,android.R.layout.simple_list_item_1,mManager.getIdleList());
+        lView = (ListView) findViewById(R.id.right_drawer);
+        lView.setAdapter(mIdleAdapter);
+        lView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mManager.unIdle(mIdleAdapter.getItem(position));
+                mAdapter.notifyDataSetChanged();
+                mIdleAdapter.notifyDataSetChanged();
             }
         });
 
@@ -203,6 +217,9 @@ public class MainActivity extends AppCompatActivity {
                             );
                         }
                     }
+                    if(data.getBooleanExtra("idle",false)){
+                        mManager.makeIdle(f);
+                    }
                     break;
                 case NEW:
                     mManager.add(data.getBooleanExtra("foe",false),
@@ -219,7 +236,9 @@ public class MainActivity extends AppCompatActivity {
                     mManager.action(data.getIntExtra("id",0),data.getIntExtra("ticks",0),data.getIntExtra("stamina",0),data.getIntExtra("life",0));
                     break;
             }
+
             mAdapter.notifyDataSetChanged();
+            mIdleAdapter.notifyDataSetChanged();
         }
     }
 
@@ -274,12 +293,11 @@ public class MainActivity extends AppCompatActivity {
                             break;
                     }
                 }
+                weaponArrayAdapter.clear();
+                weaponArrayAdapter.addAll(Weapon.values());
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            weaponArrayAdapter = new ArrayAdapter<Weapon>(MainActivity.this,R.layout.support_simple_spinner_dropdown_item,Weapon.values());
-            actionAdapter = new ArrayAdapter<Action>(MainActivity.this,R.layout.support_simple_spinner_dropdown_item);
-            fighterAdapter = new ArrayAdapter<Fighter>(MainActivity.this,R.layout.support_simple_spinner_dropdown_item);
             return null;
         }
     }

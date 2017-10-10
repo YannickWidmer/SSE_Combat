@@ -14,7 +14,7 @@ import ch.widmer.yannick.ssecombat.db.SQLManager;
  */
 
 public class TickManager {
-    private ArrayList<Fighter> mList;
+    private ArrayList<Fighter> mList, mIdleList = new ArrayList<>();
     private static Random random = new Random();
     private SQLManager sqlManager;
     private Comparator<Fighter> comparator = new Comparator<Fighter>() {
@@ -41,6 +41,9 @@ public class TickManager {
         for(Fighter f:mList){
             f.passTicks(tickPassing);
         }
+        for(Fighter f:mIdleList){
+            f.passTicks(tickPassing);
+        }
     }
 
     public boolean action(int id, int ticks, int stamina, int life){
@@ -50,6 +53,10 @@ public class TickManager {
         f.useLife(life);
         orderListByTick();
         return true;
+    }
+
+    public ArrayList<Fighter> getIdleList(){
+        return mIdleList;
     }
 
     private void orderListByTick(){
@@ -73,15 +80,29 @@ public class TickManager {
     }
 
     private void save(){
+        mList.addAll(mIdleList);
         sqlManager.save(mList);
+        mList.removeAll(mIdleList);
     }
 
     public ArrayList<String> acuity_test() {
         ArrayList<String> res = new ArrayList<>();
         for(Fighter f:mList)
-            res.add((random.nextInt(f.getActuity())+1) +" "+f.getName());
+            res.add((f.getActuity()>0?(random.nextInt(f.getActuity())+1):1) +" "+f.getName());
+        for(Fighter f:mIdleList)
+            res.add((f.getActuity()>0?(random.nextInt(f.getActuity())+1):1) +" "+f.getName());
         Collections.sort(res);
         Collections.reverse(res);
         return res;
+    }
+
+    public void makeIdle(Fighter f) {
+        mList.remove(f);
+        mIdleList.add(f);
+    }
+
+    public void unIdle(Fighter f){
+        mList.add(f);
+        mIdleList.remove(f);
     }
 }
