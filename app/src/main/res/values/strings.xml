@@ -6,4 +6,9 @@
     <string name="free">frei</string>
     <string name="gegen">gegen</string>
     <string name="einzeln">einzeln</string>
+    <string name="players">players</string>
+    <string name="foes">foes</string>
+    <string name="new_pc">new player</string>
+    <string name="new_beast">new beast</string>
+    <string name="action">action</string>
 </resources>

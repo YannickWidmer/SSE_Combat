@@ -10,12 +10,12 @@ import ch.widmer.yannick.ssecombat.R;
 
 import static ch.widmer.yannick.ssecombat.R.id.tick;
 
-public class DialogModif extends Activity {
+public class DialogModifPc extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dialog_modif);
+        setContentView(R.layout.activity_dialog_modif_pc);
 
         ((EditText)findViewById(R.id.name)).setText(getIntent().getStringExtra("name"));
         ((EditText)findViewById(tick)).setText(""+getIntent().getIntExtra("tick",0));
@@ -53,7 +53,7 @@ public class DialogModif extends Activity {
     private void answer(boolean idle){
         Intent returnIntent;
         returnIntent = new Intent();
-        returnIntent.putExtra("id",getIntent().getIntExtra("id",0));
+        returnIntent.putExtra("id",getIntent().getLongExtra("id",0));
         returnIntent.putExtra("errase",false);
         returnIntent.putExtra("name",
                 ((EditText)findViewById(R.id.name)).getText().toString());

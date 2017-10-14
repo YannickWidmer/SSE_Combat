@@ -23,8 +23,21 @@
     <style name="BaseTextNumber" parent="android:style/Widget.TextView">
         <item name="android:textSize">30dp</item>
         <item name="android:textColor">#fcfffd</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:gravity">left</item>
+    </style>
+
+    <style name="TitleText" parent="android:style/Widget.TextView">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">#e120245c</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:gravity">left</item>
+    </style>
+
+    <style name="DrawerText" parent="BaseText">
+        <item name="android:textColor">#fd494949</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:gravity">left</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

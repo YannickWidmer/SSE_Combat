@@ -20,7 +20,8 @@ public class DialogAction extends Activity {
         ((TextView)findViewById(R.id.text)).setText(getIntent().getStringExtra("text"));
         staminaNow = getIntent().getIntExtra("staminaNow",0);
         ((TextView)findViewById(R.id.staminaNow)).setText(""+staminaNow+" - ");
-        ((TextView)findViewById(R.id.staminaUsed)).setText("0");
+        staminaUse = getIntent().getIntExtra("staminaUse",0);
+        ((TextView)findViewById(R.id.staminaUsed)).setText(""+staminaUse);
         ((TextView)findViewById(R.id.staminaMax)).setText(""+getIntent().getIntExtra("staminaMax",0));
         lifeNow = getIntent().getIntExtra("lifeNow",0);
         ((TextView)findViewById(R.id.lifeNow)).setText(""+lifeNow+" - ");
@@ -29,14 +30,13 @@ public class DialogAction extends Activity {
 
         ((TextView)findViewById(R.id.ticks)).setText("0");
         rawTicks = getIntent().getBooleanExtra("rawTicks",false);
-        if(!rawTicks)
-            ((LinearLayout)findViewById(R.id.ticksLayout)).setVisibility(View.INVISIBLE);
+        if(!rawTicks) ((LinearLayout)findViewById(R.id.ticksLayout)).setVisibility(View.INVISIBLE);
     }
 
     public void end(int i){
         Intent returnIntent;
         returnIntent = new Intent();
-        returnIntent.putExtra("id",getIntent().getIntExtra("id",-1));
+        returnIntent.putExtra("id",getIntent().getLongExtra("id",-1));
         returnIntent.putExtra("stamina",staminaUse);
         returnIntent.putExtra("life",lifeUse);
 
@@ -91,17 +91,8 @@ public class DialogAction extends Activity {
     public void fm(View v){
         end(3);
     }
-    public void fail(View v){
-        end(0);
-    }
 
     public void success(View v){
-        end(0);
-    }
-    public void sp(View v){
-        end(0);
-    }
-    public void spp(View v){
         end(0);
     }
 

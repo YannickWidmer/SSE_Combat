@@ -11,6 +11,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import ch.widmer.yannick.ssecombat.fighters.Fighter;
+
 /**
  * Created by Yannick on 01.04.2017.
  */

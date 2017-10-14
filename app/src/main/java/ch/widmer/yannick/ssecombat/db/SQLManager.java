@@ -15,7 +15,10 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.widmer.yannick.ssecombat.Fighter;
+import ch.widmer.yannick.ssecombat.fighters.BeastInstance;
+import ch.widmer.yannick.ssecombat.fighters.Fighter;
+import ch.widmer.yannick.ssecombat.fighters.PlayerCharacter;
+import ch.widmer.yannick.ssecombat.xmlparsing.Beast;
 
 
 public class SQLManager extends SQLiteOpenHelper {
@@ -24,25 +27,23 @@ public class SQLManager extends SQLiteOpenHelper {
 
     // All Static variables related to db
     // Database Version
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     // Database Name
     private static final String DATABASE_NAME = "MAIN";
 
     // table names
-    public static final String TABLE_FIGHTER = "FIGHTER";
+    public static final String TABLE_PC = "PCS", TABLE_BEAST = "BEAST";
 
     //Table columns names
-    public static final  String KEY_ID = "ID", KEY_NAME = "NAME",
-        KEY_ISFOE = "ISFOE", KEY_MAXLIFE = "MAXLIFE", KEY_LIFE = "LIFE",
-        KEY_MAXSTAMINA="MAXSTAMINA", KEY_STAMINA = "STAMINA", KEY_ACUITY = "ACTUITY",
+    public static final  String KEY_ID = "ID", KEY_NAME = "NAME", KEY_TEMPLATE ="TEMPLATE",
+        KEY_ISFOE = "ISFOE", KEY_IDLE = "IDLE",
+            KEY_MAXLIFE = "MAXLIFE", KEY_LIFE = "LIFE",
+        KEY_MAXSTAMINA="MAXSTAMINA", KEY_STAMINA = "STAMINA", KEY_ACUITY = "ACUITY",
         KEY_TICK = "TICK";
 
 
     private SQLiteDatabase db;
-
-    private List<String> warnings;
-
 
     public SQLManager(Activity context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -60,64 +61,87 @@ public class SQLManager extends SQLiteOpenHelper {
     // Creating Tables
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_ARMY_TABLE = "CREATE TABLE " + TABLE_FIGHTER + "("
+        String CREATE_PC_TABLE = "CREATE TABLE " + TABLE_PC + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-                + KEY_ISFOE + " BOOLEAN, " + KEY_ACUITY + " INTEGER, "
-                + KEY_MAXLIFE + " INTEGER, " +  KEY_LIFE + " INTEGER, "
-                + KEY_MAXSTAMINA + " INTEGER, " + KEY_STAMINA + " INTEGER,"
+                + KEY_ISFOE + " BOOLEAN, " + KEY_IDLE + " BOOLEAN, "
+                + KEY_ACUITY + " INTEGER, " + KEY_MAXLIFE + " INTEGER, "
+                + KEY_LIFE + " INTEGER, " + KEY_MAXSTAMINA + " INTEGER, "
+                + KEY_STAMINA + " INTEGER," + KEY_TICK + " INTEGER"
+                + ");";
+
+        String CREATE_BEAST_TABLE = "CREATE TABLE "+ TABLE_BEAST + "("
+                + KEY_ID +" INTEGER PRIMARY KEY, " + KEY_NAME +" TEXT, "
+                + KEY_TEMPLATE +" TEXT, " + KEY_IDLE +" BOOLEAN, "
+                + KEY_LIFE + " INTEGER, " + KEY_STAMINA + " INTEGER,"
                 + KEY_TICK + " INTEGER"
                 + ");";
 
-        db.execSQL(CREATE_ARMY_TABLE);
+        db.execSQL(CREATE_PC_TABLE);
+        db.execSQL(CREATE_BEAST_TABLE);
     }
 
     // Upgrading database
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_FIGHTER);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PC);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_BEAST);
         // Create tables again
         onCreate(db);
     }
 
 
-
-    public void save(List<Fighter> fighters){
-        // This should delete all
-        getWritableDatabase().delete(TABLE_FIGHTER,null, null);
-        for(Fighter f:fighters)
-            pushFighter(f,null);
+    public void delete(Fighter f){
+        if(f instanceof PlayerCharacter)
+            deleteEntry(TABLE_PC,f.getId());
+        else
+            deleteEntry(TABLE_BEAST,f.getId());
     }
+
 
     //////////// PUSH  //////////////////////////////////
 
-    private synchronized Long pushFighter(Fighter fighter, Long id){ // add or update army
+    public synchronized Long pushPc(PlayerCharacter pc){ // add or update army
 
         ContentValues c = new ContentValues();
-        c.put(KEY_NAME, fighter.getName());
-        c.put(KEY_ISFOE,fighter.isFoe()?"true":"false");
-        c.put(KEY_MAXLIFE, fighter.getMaxLife());
-        c.put(KEY_LIFE, fighter.getLife());
-        c.put(KEY_ACUITY,fighter.getActuity());
-        c.put(KEY_MAXSTAMINA, fighter.getStaminaMax());
-        c.put(KEY_STAMINA, fighter.getStamina());
-        c.put(KEY_TICK, fighter.getTick());
+        c.put(KEY_NAME, pc.getName());
+        c.put(KEY_ID, pc.getId());
+        c.put(KEY_ISFOE,pc.isFoe()?"true":"false");
+        c.put(KEY_IDLE,pc.isIdle()?"true":"false");
+        c.put(KEY_MAXLIFE, pc.getMaxLife());
+        c.put(KEY_LIFE, pc.getLife());
+        c.put(KEY_ACUITY,pc.getAcuity());
+        c.put(KEY_MAXSTAMINA, pc.getStaminaMax());
+        c.put(KEY_STAMINA, pc.getStamina());
+        c.put(KEY_TICK, pc.getTick());
+        pc.setId(pushData(TABLE_PC,pc.getId(),c));
+        return pc.getId();
+    }
 
-        return pushData(TABLE_FIGHTER,id,c);
+    public synchronized Long pushBeast(BeastInstance beast){ // add or update army
+        ContentValues c = new ContentValues();
+        c.put(KEY_ID,beast.getId());
+        c.put(KEY_NAME, beast.getName());
+        c.put(KEY_TEMPLATE, beast.getTemplate().toString());
+        c.put(KEY_IDLE,beast.isIdle()?"true":"false");
+        c.put(KEY_LIFE, beast.getLife());
+        c.put(KEY_STAMINA, beast.getStamina());
+        c.put(KEY_TICK, beast.getTick());
+        beast.setId(pushData(TABLE_BEAST,beast.getId(),c));
+        return beast.getId();
     }
 
 
 
     //////////// GET  /////////////////////////////////
 
-    public synchronized ArrayList<Fighter> getFighters(){
-        ArrayList<Fighter> fighters = new ArrayList<>();
-        Fighter fighter;
+    public synchronized ArrayList<PlayerCharacter> getPCs(){
+        ArrayList<PlayerCharacter> fighters = new ArrayList<>();
         db = getReadableDatabase();
-        Cursor c = db.query(TABLE_FIGHTER,new String[]{KEY_NAME,KEY_ID,KEY_ACUITY,KEY_ISFOE,KEY_LIFE,KEY_MAXLIFE,KEY_MAXSTAMINA,KEY_STAMINA,KEY_TICK},null,null,null,null,null);
+        Cursor c = db.query(TABLE_PC,new String[]{KEY_NAME,KEY_ID,KEY_ACUITY,KEY_ISFOE,KEY_IDLE,KEY_LIFE,KEY_MAXLIFE,KEY_MAXSTAMINA,KEY_STAMINA,KEY_TICK},null,null,null,null,null);
         if(c.moveToFirst()){
             do{
-                fighters.add(new Fighter(getBoolean(c,KEY_ISFOE),
+                fighters.add(new PlayerCharacter(getLong(c,KEY_ID),getBoolean(c,KEY_ISFOE),getBoolean(c,KEY_IDLE),
                         getString(c,KEY_NAME), getInt(c,KEY_MAXLIFE), getInt(c,KEY_LIFE),
                         getInt(c,KEY_MAXSTAMINA), getInt(c,KEY_STAMINA), getInt(c,KEY_TICK),getInt(c,KEY_ACUITY)));
             }while(c.moveToNext());
@@ -128,17 +152,40 @@ public class SQLManager extends SQLiteOpenHelper {
     }
 
 
+    public synchronized ArrayList<BeastInstance> getBeasts(){
+        ArrayList<BeastInstance> beasts = new ArrayList<>();
+        db = getReadableDatabase();
+        Cursor c = db.query(TABLE_BEAST,new String[]{KEY_NAME,KEY_ID,KEY_TEMPLATE,KEY_IDLE,KEY_LIFE,KEY_STAMINA,KEY_TICK},null,null,null,null,null);
+        if(c.moveToFirst()){
+            do{
+                //     public BeastInstance(String name, Beast template, boolean isIdle, int life, int stamina, int ticks) {
+
+                beasts.add(new BeastInstance(getLong(c,KEY_ID),getString(c,KEY_NAME), Beast.get(getString(c,KEY_TEMPLATE)),
+                        getBoolean(c,KEY_IDLE), getInt(c,KEY_LIFE), getInt(c,KEY_STAMINA), getInt(c,KEY_TICK)));
+
+            }while(c.moveToNext());
+        }
+        db.close();
+        c.close();
+        return beasts;
+    }
+
+
+
+
 
 
     // Help methods
 
-    private int get(Cursor c,String key){
-        return c.getInt(c.getColumnIndexOrThrow(key));
-    }
 
     private int getInt(Cursor c, String key){
         return c.getInt(c.getColumnIndexOrThrow(key));
     }
+
+    private Long getLong(Cursor c, String key){
+        return c.getLong(c.getColumnIndexOrThrow(key));
+    }
+
 
     private boolean getBoolean(Cursor c,String key){
         return c.getString(c.getColumnIndexOrThrow(key)).toLowerCase().equals("true");

@@ -18,10 +18,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".dialogs.DialogNew"
+        <activity android:name=".dialogs.DialogNewPC"
             android:parentActivityName=".MainActivity"
             android:theme="@style/SSEBaseDialog" />
-        <activity android:name=".dialogs.DialogModif"
+        <activity android:name=".dialogs.DialogNewBeast"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/SSEBaseDialog" />
+
+        <activity android:name=".dialogs.DialogModifPc"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/SSEBaseDialog" />
+        <activity android:name=".dialogs.DialogModifBeast"
             android:parentActivityName=".MainActivity"
             android:theme="@style/SSEBaseDialog" />
         <activity android:name=".dialogs.DialogAction"

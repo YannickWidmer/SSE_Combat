@@ -1,0 +1,15 @@
+<beasts>
+    <beast name="Garaner" live ="10" stamina="12">
+        <action name="Ausweichen"
+            description="(6,6,6)"
+            ticks="4"
+            defense="true"
+            stamina="1" />
+        <action name="attack"
+            description="(8,8,8)"
+            ticks="6"
+            stamina="0" />
+    </beast>
+
+
+</beasts>

@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="ch.widmer.yannick.ssecombat.dialogs.DialogNew">
+    tools:context="ch.widmer.yannick.ssecombat.dialogs.DialogNewPC">
 
     <TextView
         android:layout_width="wrap_content"
@@ -124,41 +124,19 @@
             android:layout_width="wrap_content"
             android:layout_gravity="center"
             android:onClick="fmm"
-            android:text="--f"/>
+            android:text="--fail"/>
         <Button
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_gravity="center"
             android:onClick="fm"
-            android:text="-f"/>
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:onClick="fail"
-            android:text="fail"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+            android:text="-fail"/>
         <Button
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_gravity="center"
             android:onClick="success"
-            android:text="success"/>
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:onClick="sp"
-            android:text="+s"/>
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:onClick="spp"
-            android:text="++s"/>
+            android:text="success/fail"/>
     </LinearLayout>
 
     <Button

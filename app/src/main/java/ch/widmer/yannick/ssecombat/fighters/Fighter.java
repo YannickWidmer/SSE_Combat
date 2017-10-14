@@ -1,33 +1,42 @@
-package ch.widmer.yannick.ssecombat;
+package ch.widmer.yannick.ssecombat.fighters;
 
 
 /**
  * Created by Yannick on 01.04.2017.
  */
 
-public class Fighter {
-    boolean mIsFoe;
-    private static int ID=0;
-    private final int id = ++ID;
-    String mName;
-    int mMaxLife, mLife, mMaxStamina,mStamina,mTick,mAcuity;
+public abstract class  Fighter {
+    boolean  mIsIdle;
+    private Long id;
+    private String mName;
+    private int mMaxLife, mLife, mMaxStamina,mStamina,mTick;
 
-    public Fighter(boolean isFoe, String name, int maxLife, int life, int maxStamina, int stamina, int tick, int acuity) {
-        mIsFoe = isFoe;
+    public Fighter(Long id,String name, int maxLife, int life, int maxStamina, int stamina, int tick) {
+        mIsIdle = false;
+        this.id = id;
         mName = name;
         mMaxLife = maxLife;
         mLife = life;
         mMaxStamina = maxStamina;
         mStamina = stamina;
         mTick = tick;
-        mAcuity = acuity;
     }
 
-    public int getId(){return id;}
-
-    public boolean isFoe() {
-        return mIsFoe;
+    public void setIdle(boolean idle){
+        mIsIdle = idle;
     }
+
+    public boolean isIdle(){
+        return mIsIdle;
+    }
+
+    public void setId(Long id){
+        this.id = id;
+    }
+
+    public Long getId(){return id;}
+
+    public abstract boolean isFoe();
 
     public String getName() {
         return mName;
@@ -39,6 +48,14 @@ public class Fighter {
 
     public int getLife() {
         return mLife;
+    }
+
+    public int getStaminaMax() {
+        return mMaxStamina;
+    }
+
+    public int getStamina() {
+        return mStamina;
     }
 
     public void passTicks(int ticks){
@@ -55,31 +72,19 @@ public class Fighter {
         return mTick;
     }
 
-    public void set(String name, int maxLife, int life, int maxStamina, int stamina, int tick, int acutiy) {
+    protected void set(Long id, String name, int maxLife, int life, int maxStamina, int stamina, int tick) {
         mName = name;
+        this.id = id;
         mMaxLife = maxLife;
         mLife = life;
         mMaxStamina = maxStamina;
         mStamina = stamina;
         mTick = tick;
-        mAcuity = acutiy;
-    }
-
-    public int getActuity(){
-        return mAcuity;
     }
 
     @Override
     public String toString(){
         return mName;
-    }
-
-    public int getStaminaMax() {
-        return mMaxStamina;
-    }
-
-    public int getStamina() {
-        return mStamina;
     }
 
     public void useStamina(int stamina) {

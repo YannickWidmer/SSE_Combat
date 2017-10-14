@@ -9,12 +9,12 @@ import android.widget.EditText;
 
 import ch.widmer.yannick.ssecombat.R;
 
-public class DialogNew extends Activity {
+public class DialogNewPC extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dialog_new);
+        setContentView(R.layout.activity_dialog_new_pc);
     }
 
     public void cancel(View v){
@@ -25,8 +25,7 @@ public class DialogNew extends Activity {
     }
 
     public void confirmed(View v){
-        Intent returnIntent;
-        returnIntent = new Intent();
+        Intent returnIntent = new Intent();
         returnIntent.putExtra("name",
                 ((EditText)findViewById(R.id.name)).getText().toString());
         returnIntent.putExtra("tick",
