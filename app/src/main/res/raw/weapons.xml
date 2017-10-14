@@ -11,11 +11,11 @@
         <action name="Angriff"
                 ticks="3"
                 bonus="5"
+                attack="true"
                 attributes="Geschick, Kraft"
                 damage ="4w6"/>
         <action name="Verteidigung"
             ticks="2"
-            defense="true"
             bonus="4"
             attributes="Geschick, Geschwindigkeit"/>
     </weapon>
@@ -24,11 +24,11 @@
         <action name="Angriff"
             ticks="6"
             bonus="8"
+            attack="true"
             attributes="Geschick, Kraft"
             damage ="6w6"/>
         <action name="Verteidigung"
             ticks="2"
-            defense="true"
             bonus="7"
             attributes="Geschick, Geschwindigkeit"/>
     </weapon>
@@ -37,12 +37,12 @@
              twohands="true">
         <action name="Angriff"
             ticks="8"
+            attack="true"
             bonus="11"
             attributes="Geschick, Kraft"
             damage ="7w8"/>
         <action name="Verteidigung"
             ticks="3"
-            defense="true"
             bonus="10"
             attributes="Geschick, Geschwindigkeit"/>
     </weapon>
@@ -50,11 +50,11 @@
         <action name="Angriff"
             ticks="2"
             bonus="2"
+            attack="true"
             attributes="Geschick, Geschwindigkeit"
             damage ="4w12"/>
         <action name="Verteidigung"
             ticks="1"
-            defense="true"
             bonus="1"
             attributes="Geschick, Geschwindigkeit"/>
     </weapon>
@@ -64,12 +64,12 @@
         <action name="Angriff"
             difficult="true"
             ticks="9"
+            attack="true"
             bonus="11"
             damage ="8w12"
             attributes="Kraft, Geschwindigkeit"/>
         <action name="Verteidigung"
             ticks="4"
-            defense="true"
             bonus="4"
             attributes="Kraft, Geschick"/>
     </weapon>
@@ -80,12 +80,12 @@
             ticks="10"
             difficult="true"
             bonus="8"
+            attack="true"
             damage ="10w12"
             charge="true"
             attributes="Kraft, Geschwindigkeit"/>
         <action name="Verteidigung"
             ticks="6"
-            defense="true"
             bonus="1"
             attributes="Kraft, Geschick"/>
     </weapon>
@@ -95,18 +95,18 @@
         <action name="Angriff"
             ticks="8"
             bonus="15"
+            attack="true"
             damage ="5w8"
             attributes="Geschick, Geschwindigkeit"/>
         <action name="Verteidigung"
             ticks="4"
-            defense="true"
             bonus="7"
             attributes="Geschick, Kraft"/>
     </weapon>
 
     <weapon name="Armbrust"
         twohands="true">
-        <action name="Angriff"
+        <action name="Schiessen"
             ticks="2"
             shot="true"
             difficult="true"
@@ -121,7 +121,7 @@
 
     <weapon name="Gewehr"
         twohands="true">
-        <action name="Angriff"
+        <action name="Schiessen"
             ticks="2"
             shot="true"
             difficult="true"
@@ -136,7 +136,7 @@
 
     <weapon name="Bogen"
         twohands="true">
-        <action name="Angriff"
+        <action name="Schiessen"
             ticks="2"
             difficult="true"
             shot="true"
@@ -154,12 +154,46 @@
             ticks="5"
             bonus="2"
             damage ="3w4"
+            attack="true"
             charge="true"
             attributes="Kraft"/>
         <action name="Verteidigung"
             ticks="1"
-            defense="true"
             bonus="13"
             attributes="Geschick, Kraft"/>
+    </weapon>
+
+    <weapon name="Fluegel">
+        <action name="Linie fliegen"
+            difficulty="(6)"
+            attributes="Konstitution,Sagazität"/>
+        <action name="Kurven"
+            difficulty="(6,6)"
+            attributes="Geschick,Kraft"/>
+        <action name="Landen"
+            difficulty="(6 am ort,6 sanft,6 auf beine)"
+            attributes="Geschick, Mechanik"/>
+    </weapon>
+
+    <weapon name="Zeppelin">
+        <action name="Manoever"
+            difficulty="(6,6)"
+            attributes="Mechanik,Sinne"/>
+        <action name="Schock verkraften"
+            difficulty="(8 kein schaden, 6 auf beine)"
+            attributes="Geschick, Konstitution"/>
+        <action name="Flammenwerfer"
+            attributes="Geschick,Mechanik"
+            damage ="12w12"
+            difficulty="(6 +- Manöver)"
+            ticks="10"/>
+        <action name="Kanone"
+            attributes="Sinne,Mechanik"
+            damage ="20w8"
+            ticks="10"/>
+        <action name="Kanone Nachladen"
+            attributes="Mechanik,Geschick"
+            difficulty="(6,6 geladen,6 schuss+5)"
+            ticks="20"/>
     </weapon>
 </weapons>

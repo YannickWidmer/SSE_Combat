@@ -8,8 +8,82 @@
         <action name="attack"
             description="(8,8,8)"
             ticks="6"
+            attack="true"
             stamina="0" />
     </beast>
-
-
+    <beast name="Berserkir" live ="12" stamina="10">
+        <action name="Ausweichen"
+            description="(6,6,6) Armor 4"
+            ticks="4"
+            defense="true"
+            stamina="1" />
+        <action name="Verteidigung"
+            description="(8,6,4) Armor 4"
+            ticks="2"
+            defense="true"
+            stamina="0" />
+        <action name="attack"
+            description="(8,8,8) Damage 6w6"
+            ticks="6"
+            attack="true"
+            stamina="0" />
+    </beast>
+    <beast name="Kàfer Pirat" live ="12" stamina="5">
+        <action name="Ausweichen"
+            description="(5,5,5) Armor 2"
+            ticks="4"
+            defense="true"
+            stamina="1" />
+        <action name="Verteidigung"
+            description="(6,6,4) Armor 2"
+            ticks="3"
+            defense="true"
+            stamina="0" />
+        <action name="attack"
+            description="(8,4,4) Damage 6w6"
+            ticks="7"
+            attack="true"
+            stamina="0" />
+    </beast>
+    <beast name="Garden" live ="12" stamina="10">
+        <action name="Ausweichen"
+            description="(6,6,6) Armor 2"
+            ticks="4"
+            defense="true"
+            stamina="1" />
+        <action name="Verteidigung"
+            description="(8,6,4) Armor 2"
+            ticks="2"
+            defense="true"
+            stamina="0" />
+        <action name="attack"
+            description="(8,8,8) Damage 6w6"
+            ticks="6"
+            attack="true"
+            stamina="0" />
+    </beast>
+    <beast name="Hildölfrs " live ="10" stamina="20">
+        <action name="Ausweichen"
+            description="(10,0,0) Armor 2"
+            ticks="3"
+            defense="true"
+            stamina="2" />
+        <action name="attack"
+            description="(12,8,8) Damage 8w6"
+            ticks="5"
+            attack="true"
+            stamina="1" />
+    </beast>
+    <beast name="Igdunar" live ="50" stamina="50" big="true">
+        <action name="ausweichen"
+            description="(10,0,0) Armor 5"
+            ticks="3"
+            defense="true"
+            stamina="2" />
+        <action name="ramen"
+            description="(12,8,8) Damage 12w6"
+            ticks="5"
+            attack="true"
+            stamina="1" />
+    </beast>
 </beasts>

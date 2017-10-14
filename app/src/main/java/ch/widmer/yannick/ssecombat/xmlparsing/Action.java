@@ -9,7 +9,7 @@ public class Action {
     public int tick, bonus;
     public String attributes,name, damage, difficulty;
     public boolean difficult,charge,shot,twohands;
-    public boolean defense;
+    public boolean attack;
 
     @Override
     public String toString(){

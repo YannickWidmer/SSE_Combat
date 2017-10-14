@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("id",pc.getId());
                 intent.putExtra("ticks",0);
                 intent.putExtra("rawTicks",true);
-                intent.putExtra("defense",false);
+                intent.putExtra("attack",false);
                 intent.putExtra("staminaNow",pc.getStamina());
                 intent.putExtra("staminaMax",pc.getStaminaMax());
                 intent.putExtra("lifeNow",pc.getLife());
@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("id",beast.getId());
                 intent.putExtra("ticks",0);
                 intent.putExtra("rawTicks",true);
-                intent.putExtra("defense",false);
+                intent.putExtra("attack",false);
                 intent.putExtra("staminaNow",beast.getStamina());
                 intent.putExtra("staminaMax",beast.getStaminaMax());
                 intent.putExtra("lifeNow",beast.getLife());
@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("text",text);
         intent.putExtra("id",pc.getId());
         intent.putExtra("ticks",action.tick);
-        intent.putExtra("defense",action.defense);
+        intent.putExtra("attack",action.attack);
         intent.putExtra("staminaNow",pc.getStamina());
         intent.putExtra("staminaMax",pc.getStaminaMax());
         intent.putExtra("lifeNow",pc.getLife());
@@ -208,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("staminaNow",beast.getStamina());
         intent.putExtra("staminaMax",beast.getStaminaMax());
         intent.putExtra("lifeNow",beast.getLife());
-        intent.putExtra("defense",action.isDefense());
+        intent.putExtra("attack",action.isAttack());
         intent.putExtra("lifeMax",beast.getMaxLife());
         startActivityForResult(intent, ACTBEAST);
     }

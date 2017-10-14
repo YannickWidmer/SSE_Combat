@@ -52,7 +52,7 @@ public class Weapon {
                     action.charge = actionEntry.getBool("charge");
                     action.shot = actionEntry.getBool("shot");
                     action.twohands = actionEntry.getBool("twohands");
-                    action.defense = actionEntry.getBool("defense");
+                    action.attack = actionEntry.getBool("attack");
                     weapon.actions.add(action);
                 }
             }

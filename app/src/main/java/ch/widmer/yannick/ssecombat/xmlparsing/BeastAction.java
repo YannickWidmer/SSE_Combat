@@ -7,8 +7,8 @@ package ch.widmer.yannick.ssecombat.xmlparsing;
 public class BeastAction {
     private String name, description;
     private int ticks, stamina;
-    private boolean isDefense;
-    private static final String NAME = "name", DESCRIPTION = "description", TICKS ="ticks", STAMINA ="stamina", DEFENSE ="defense";
+    private boolean isAttack;
+    private static final String NAME = "name", DESCRIPTION = "description", TICKS ="ticks", STAMINA ="stamina", ATTACK ="attack";
     private static final String[] necessaryfields =new String[]{NAME,DESCRIPTION,TICKS,STAMINA};
 
     public BeastAction(MyXmlParser.Entry actionEntry) throws Exception{
@@ -20,11 +20,11 @@ public class BeastAction {
         description = actionEntry.getAttribute(DESCRIPTION);
         ticks = actionEntry.getInt(TICKS);
         stamina = actionEntry.getInt(STAMINA);
-        isDefense = actionEntry.getBool(DEFENSE);
+        isAttack = actionEntry.getBool(ATTACK);
     }
 
-    public boolean isDefense(){
-        return isDefense;
+    public boolean isAttack(){
+        return isAttack;
     }
 
     @Override

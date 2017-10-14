@@ -42,7 +42,7 @@ public class DialogAction extends Activity {
 
         if(!rawTicks) {
             ticks = getIntent().getIntExtra("ticks", 0);
-            if (getIntent().getBooleanExtra("defense", false))
+            if (getIntent().getBooleanExtra("attack", false))
                 ticks += i;
         }
         returnIntent.putExtra("ticks",ticks);
